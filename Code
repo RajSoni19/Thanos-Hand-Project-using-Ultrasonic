@@ -1,0 +1,63 @@
+long duration;
+long distance;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(7,INPUT); //echo
+  pinMode(8,OUTPUT); //trig
+  pinMode(13, OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(2,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(8,LOW);
+  delayMicroseconds(2);
+  digitalWrite(8,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(8,LOW);
+
+  duration = pulseIn(7,HIGH);
+
+  distance = duration/58.2;
+
+  Serial.println(distance);
+
+  delay(50);
+
+  if(distance < 10)
+  {
+     
+       digitalWrite(13, HIGH);
+       delay(1000);
+             
+        digitalWrite(6, HIGH);
+        delay(1000);
+      
+       digitalWrite(2, HIGH);
+       delay(1000);
+      
+       digitalWrite(3, HIGH);
+       delay(1000);
+       
+       digitalWrite(4, HIGH);
+            delay(1000);     
+
+  }
+  else
+  {
+    
+    digitalWrite(13, LOW);
+      digitalWrite(6, LOW);
+        digitalWrite(2, LOW);
+          digitalWrite(3, LOW);
+            digitalWrite(4, LOW);
+    
+   
+    
+  }  
+}
